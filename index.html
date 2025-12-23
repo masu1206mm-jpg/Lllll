@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人生ゲーム用 50連ルーレット</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      height: 160px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 12px;
+      padding: 14px 22px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #007aff;
+      color: white;
+    }
+    .result {
+      margin-top: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🎲 人生ゲーム用 50個ルーレット</h2>
+<p>1行＝1項目（最大50）</p>
+
+<textarea id="items">
+A
+B
+C
+D
+</textarea>
+
+<br>
+<button onclick="spin()">ルーレット実行</button>
+
+<div class="result" id="result"></div>
+
+<script>
+function spin() {
+  const lines = document.getElementById("items").value
+    .split("\n")
+    .map(l => l.trim())
+    .filter(l => l !== "");
+
+  if (lines.length === 0) {
+    alert("項目を入れてください");
+    return;
+  }
+
+  let resultHTML = "<h3>🎯 結果</h3><ol>";
+  for (let i = 0; i < Math.min(50, lines.length); i++) {
+    const rand = lines[Math.floor(Math.random() * lines.length)];
+    resultHTML += `<li>${rand}</li>`;
+  }
+  resultHTML += "</ol>";
+
+  document.getElementById("result").innerHTML = resultHTML;
+}
+</script>
+
+</body>
+</html>
