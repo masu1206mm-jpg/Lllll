@@ -91,6 +91,8 @@ function spin() {
     if (count > 20) {
       clearInterval(interval);
       display.classList.remove("spin");
+      // ここで確定したテキストを取得して、指定の文章に書き換えます
+      display.textContent = `あなたは${display.textContent}に行かなきゃありません！ドンマイ！`;
       win.play();
     }
   }, 100);
